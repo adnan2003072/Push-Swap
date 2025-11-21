@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_newnode.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abouzkra <adnanbouzkraouoi037@gmail.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/15 17:33:29 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/21 10:20:46 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/11/21 23:26:57 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/11/21 23:28:39 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-t_list	*ft_lstnew(void *content)
+t_node	*ft_newnode(int data)
 {
-	t_list	*new;
+	t_node	*new_node;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (!new)
+	new_node = (t_node *)malloc(sizeof(t_node));
+	if (!new_node)
 		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	new_node->data = data;
+	new_node->next = new_node;
+	new_node->prev = new_node;
+	return (new_node);
 }

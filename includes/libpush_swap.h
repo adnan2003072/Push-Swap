@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 08:11:30 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/21 11:44:57 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/22 00:11:42 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,36 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct s_list
+typedef struct s_node
 {
-	void			*content;
-	struct s_list	*next;
-}	t_list;
+	int				data;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
 
-int	ft_atoi(const char *nptr);
-int	ft_isdigit(int c);
+typedef struct s_stack
+{
+	t_node	*top;
+	int		size;
+}	t_stack;
 
-// linked lists functions
-t_list	*ft_lstnew(int n);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-int		ft_lstsize(t_list *lst);
-t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
+int		ft_atoi(const char *nptr);
+int		ft_isdigit(int c);
+t_node	*ft_newnode(int data);
+t_node	*ft_addnode_front(t_node **head, int data);
 
 // stack operations
-t_list	*init_stack(int ac, char *av[]);
-void	swap_a(t_list *a);
-void	swap_b(t_list *a);
-void	swap_s(t_list *a, t_list *b);
-t_list	*push_a(t_list *a, t_list *b);
-t_list	*push_b(t_list *a, t_list *b);
-void	rotate_a(t_list *a);
-void	rotate_b(t_list *b);
-void	rotate_r(t_list *a, t_list *b);
-void	reverse_rotate_a(t_list *a);
-void	reverse_rotate_b(t_list *b);
-void	reverse_rotate_r(t_list *a, t_list *b);
+t_stack	*init_stack(void);
+void	swap_a(t_node *a);
+void	swap_b(t_node *a);
+void	swap_s(t_node *a, t_node *b);
+t_node	*push_a(t_node *a, t_node *b);
+t_node	*push_b(t_node *a, t_node *b);
+void	rotate_a(t_node *a);
+void	rotate_b(t_node *b);
+void	rotate_r(t_node *a, t_node *b);
+void	reverse_rotate_a(t_node *a);
+void	reverse_rotate_b(t_node *b);
+void	reverse_rotate_r(t_node *a, t_node *b);
 
 #endif
