@@ -1,0 +1,36 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/11/20 12:07:52 by abouzkra          #+#    #+#              #
+#    Updated: 2025/11/21 08:45:49 by abouzkra         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME := push_swap
+CC := cc
+CFLAGS := -Wall -Wextra -Werror -Iincludes
+MSRCS := srcs/ft_atoi.c srcs/ft_isdigit.c srcs/main.c
+MOBJS := $(MSRCS:.c=.o)
+RM := rm -f
+
+all: $(NAME)
+
+$(NAME): $(MOBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(MOBJS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(MOBJS)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
