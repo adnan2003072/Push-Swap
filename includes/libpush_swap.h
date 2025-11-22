@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 08:11:30 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/22 00:11:42 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/22 14:57:03 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ typedef struct s_stack
 int		ft_atoi(const char *nptr);
 int		ft_isdigit(int c);
 t_node	*ft_newnode(int data);
+void	ft_clearlst(t_node *head);
 t_node	*ft_addnode_front(t_node **head, int data);
 
 // stack operations
-t_stack	*init_stack(void);
-void	swap_a(t_node *a);
-void	swap_b(t_node *a);
+t_stack	*init_stack(int ac, char *av[]);
+void	swap_a(t_stack **a);
+void	swap_b(t_stack **b);
 void	swap_s(t_node *a, t_node *b);
 t_node	*push_a(t_node *a, t_node *b);
 t_node	*push_b(t_node *a, t_node *b);

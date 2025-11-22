@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 08:44:17 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/22 00:29:20 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/22 15:24:57 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_numbers(int ac, char *av[])
 	return (1);
 }
 
-void print_cdll(t_node *head)
+void print_cdll(t_node **head)
 {
     t_node  *tmp;
 
@@ -41,12 +41,12 @@ void print_cdll(t_node *head)
         printf("Empty CDLL !\n");
         return ;
     }
-    tmp = head;
+    tmp = *head;
     while (1)
     {
         printf("%d", tmp->data); 
         tmp = tmp->next;
-        if (tmp == head)
+        if (tmp == *head)
             break; 
         printf("<->");
     }
@@ -62,13 +62,12 @@ int main(int ac, char *av[])
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	t_node	*lst = NULL;
-	int i = ac - 1;
-	while (i > 0)
-	{
-		ft_addnode_front(&lst, ft_atoi(av[i]));
-		i--;
-	}
-	print_cdll(lst);
+	t_stack	*a;
+	a = init_stack(ac, av);
+	print_cdll(&(a->top));
+	swap_a(&a);
+	print_cdll(&(a->top));
+	ft_clearlst(a->top);
+	free(a);
 	return (0);
 }

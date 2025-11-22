@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clearlst.c                                      :+:      :+:    :+:   */
+/*   swap_a.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/22 10:26:40 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/22 10:49:07 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/11/22 14:42:30 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/11/22 15:47:11 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-void	ft_clearlst(t_node *head)
+void	swap_a(t_stack **a)
 {
-	t_node	*curr;
-	t_node	*next;
+	t_node	*top;
+	t_node	*second;
+	t_node	*tail;
 
-	if (!head)
+	if (!*a || (*a)->size < 2)
 		return ;
-	curr = head;
-	while (1)
-	{
-		next = curr->next;
-		free(curr);
-		if (next == head)
-			break ;
-		curr = next;
-	}
+	top = (*a)->top;
+	second = top->next;
+	tail = top->prev;
+	top->next = second->next;
+	top->prev = second;
+	second->next = top;
+	second->prev = tail;
+	tail->next = second;
+	if (top->next != top)
+		top->next->prev = top;
+	top = second;
+    write(1, "sa\n", 3);
 }
