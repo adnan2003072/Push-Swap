@@ -42,7 +42,7 @@ void print_cdll(t_node **head)
 {
     t_node  *tmp;
 
-    if (!head)
+    if (!head || !*head)
     {
         printf("Empty CDLL !\n");
         return ;
@@ -99,7 +99,7 @@ int main(int ac, char *av[])
 	t_stack	*a;
 	a = init_stack(ac, av);
 	print_cdll(&(a->top));
-	swap_a(&a);
+	pop(&a);
 	print_cdll(&(a->top));
 	if (check_circularity(&(a->top), a->size))
 		printf("YOUR CDLL(%d) IS PERFECTLY CIRCULAR !\n", a->size);

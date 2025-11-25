@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pop.c                                              :+:      :+:    :+:   */
+/*   push_b.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 12:13:18 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/25 12:49:04 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/11/22 14:27:20 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/11/25 12:50:11 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-void	pop(t_stack **s)
+void	push_b(t_stack **a, t_stack **b)
 {
-	t_node	*old_top;
-	t_node	*new_top;
+	t_node	*top_b;
+	t_node	*new_node;
 
-	if (!s || !*s || (*s)->size == 0)
+	if (!a || !b || !*a || !*b)
 		return ;
-	(*s)->size--;
-	if ((*s)->size == 0)
+	top_b = (*b)->top;
+	new_node = ft_newnode((*a)->top->data);
+	pop(a);
+	if (!top_b)
 	{
-		free((*s)->top);
-		(*s)->top = NULL;
+		top_b = new_node;
+		top_b->next = top_b;
+		top_b->prev = top_b;
 		return ;
 	}
-	old_top = (*s)->top;
-	new_top = old_top->next;
-	new_top->prev = old_top->prev;
-	old_top->prev->next = new_top;
-	free(old_top);
-	(*s)->top = new_top;
+	new_node->next = top_b->next;
+	new_node->prev = top_b->prev;
+	top_b->prev = new_node;
+	top_b = new_node;
+	(*b)->size++;
+	write(1, "pb\n", 3);
 }

@@ -6,25 +6,33 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 14:27:20 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/25 12:10:57 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:50:19 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-void	push_a(t_stack **a, t_stack **b)
+void	push_b(t_stack **a, t_stack **b)
 {
 	t_node	*top_a;
-	t_node	*top_b;
+	t_node	*new_node;
 
 	if (!a || !b || !*a || !*b)
 		return ;
 	top_a = (*a)->top;
-	top_b = ft_newnode(top_a->data);
-	if (!top_b)
+	new_node = ft_newnode((*b)->top->data);
+	pop(b);
+	if (!top_a)
 	{
-		top_b->next = top_b;
-		top_b->prev = top_b;
+		top_a = new_node;
+		top_a->next = top_a;
+		top_a->prev = top_a;
+		return ;
 	}
-	(*b)->top = top_b;
+	new_node->next = top_a->next;
+	new_node->prev = top_a->prev;
+	top_a->prev = new_node;
+	top_a = new_node;
+	(*a)->size++;
+	write(1, "pa\n", 3);
 }
