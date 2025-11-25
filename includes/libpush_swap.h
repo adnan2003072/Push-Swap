@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 08:11:30 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/22 14:57:03 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:11:20 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ t_node	*ft_addnode_front(t_node **head, int data);
 t_stack	*init_stack(int ac, char *av[]);
 void	swap_a(t_stack **a);
 void	swap_b(t_stack **b);
-void	swap_s(t_node *a, t_node *b);
-t_node	*push_a(t_node *a, t_node *b);
-t_node	*push_b(t_node *a, t_node *b);
+void	swap_s(t_stack **a, t_stack **b);
+void	push_a(t_node *a, t_node *b);
+void	push_b(t_node *a, t_node *b);
 void	rotate_a(t_node *a);
 void	rotate_b(t_node *b);
 void	rotate_r(t_node *a, t_node *b);

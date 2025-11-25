@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_a.c                                           :+:      :+:    :+:   */
+/*   swap_b.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/22 14:27:20 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/25 12:10:57 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/11/22 14:42:30 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/11/25 11:58:26 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-void	push_a(t_stack **a, t_stack **b)
+void	swap_b(t_stack **b)
 {
-	t_node	*top_a;
-	t_node	*top_b;
+	t_node	*top;
+	t_node	*second;
+	t_node	*tail;
 
-	if (!a || !b || !*a || !*b)
+	if (!*b || (*b)->size < 2)
 		return ;
-	top_a = (*a)->top;
-	top_b = ft_newnode(top_a->data);
-	if (!top_b)
+	top = (*b)->top;
+	second = top->next;
+	tail = top->prev;
+	if ((*b)->size == 2)
 	{
-		top_b->next = top_b;
-		top_b->prev = top_b;
+		top->next = second;
+		second->prev = top;
 	}
-	(*b)->top = top_b;
+	else
+	{
+		second->next->prev = top;
+		second->prev = top->prev;
+		top->next = second->next;
+		tail->next = second;
+	}
+	top->prev = second;
+	second->next = top;
+	(*b)->top = second;
+    write(1, "sb\n", 3);
 }

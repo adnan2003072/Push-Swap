@@ -1,12 +1,11 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
+/*                                                                            */ /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 08:44:17 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/22 15:24:57 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:56:26 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +29,13 @@ int	check_numbers(int ac, char *av[])
 		i++;
 	}
 	return (1);
+}	
+
+void	print_node(t_node *node)
+{
+	printf("node: %d\n", node->data);
+	printf("\tprev: %d\n", node->prev->data);
+	printf("\tnext: %d\n", node->next->data);
 }
 
 void print_cdll(t_node **head)
@@ -53,6 +59,34 @@ void print_cdll(t_node **head)
     printf("\n");
 }
 
+int	check_circularity(t_node **head, int size)
+{
+	t_node	*fast_next;
+	t_node	*slow_next;
+	t_node	*fast_prev;
+	t_node	*slow_prev;
+	int		i;
+
+	if (!head || !*head)
+		return (0);
+	fast_next = *head;
+	slow_next  = *head;
+	fast_prev = (*head)->prev;
+	slow_prev = (*head)->prev;
+	i = 0;
+	while (i < size + 1 && slow_next ->next)
+	{
+		fast_next = fast_next->next->next;
+		slow_next  = slow_next ->next;
+		fast_prev = fast_prev->prev->prev;
+		slow_prev = slow_prev->prev;
+		if (slow_next  == fast_next && fast_prev == slow_prev)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int main(int ac, char *av[])
 {
 	if (ac == 1)
@@ -67,6 +101,10 @@ int main(int ac, char *av[])
 	print_cdll(&(a->top));
 	swap_a(&a);
 	print_cdll(&(a->top));
+	if (check_circularity(&(a->top), a->size))
+		printf("YOUR CDLL(%d) IS PERFECTLY CIRCULAR !\n", a->size);
+	else
+		printf("OOPS !\n");
 	ft_clearlst(a->top);
 	free(a);
 	return (0);

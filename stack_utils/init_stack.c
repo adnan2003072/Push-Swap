@@ -6,7 +6,7 @@
 /*   By: abouzkra <adnanbouzkraouoi037@gmail.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 22:33:51 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/22 11:30:52 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/24 09:07:35 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ t_stack	*init_stack(int ac, char *av[])
 		ft_addnode_front(&(new_stack->top), ft_atoi(av[i]));
 		i--;
 	}
-	new_stack->size = ac;
+	new_stack->size = ac - 1;
 	return (new_stack);
 }

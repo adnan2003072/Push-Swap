@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_a.c                                           :+:      :+:    :+:   */
+/*   swap_s.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/22 14:42:30 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/25 11:56:26 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/11/25 11:46:34 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/11/25 12:00:53 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-void	swap_a(t_stack **a)
+static void	swap(t_stack **s)
 {
 	t_node	*top;
 	t_node	*second;
 	t_node	*tail;
 
-	if (!*a || (*a)->size < 2)
+	if (!*s || (*s)->size < 2)
 		return ;
-	top = (*a)->top;
+	top = (*s)->top;
 	second = top->next;
 	tail = top->prev;
-	if ((*a)->size == 2)
+	if ((*s)->size == 2)
 	{
 		top->next = second;
 		second->prev = top;
@@ -37,6 +37,14 @@ void	swap_a(t_stack **a)
 	}
 	top->prev = second;
 	second->next = top;
-	(*a)->top = second;
-    write(1, "sa\n", 3);
+	(*s)->top = second;
+}
+
+void	swap_s(t_stack **a, t_stack **b)
+{
+	if (!a || !b || !*a || !*b)
+		return ;
+	swap(a);
+	swap(b);
+	write(1, "ss\n", 3);
 }

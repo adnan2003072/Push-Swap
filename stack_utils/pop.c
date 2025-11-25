@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_a.c                                           :+:      :+:    :+:   */
+/*   pop.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/22 14:27:20 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/25 12:10:57 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/11/25 12:13:18 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/11/25 12:13:38 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-void	push_a(t_stack **a, t_stack **b)
+void	pop(t_stack **s)
 {
-	t_node	*top_a;
-	t_node	*top_b;
 
-	if (!a || !b || !*a || !*b)
-		return ;
-	top_a = (*a)->top;
-	top_b = ft_newnode(top_a->data);
-	if (!top_b)
-	{
-		top_b->next = top_b;
-		top_b->prev = top_b;
-	}
-	(*b)->top = top_b;
 }
