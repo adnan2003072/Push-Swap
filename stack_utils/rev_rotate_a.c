@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_r.c                                         :+:      :+:    :+:   */
+/*   rev_rotate_a.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/29 09:25:25 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/29 17:28:09 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/11/29 17:07:04 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/11/29 17:29:43 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-void	rotate_r(t_stack **a, t_stack **b)
+void	rev_rotate_a(t_stack **a)
 {
 	if ((*a)->size > 1)
-		(*a)->top = (*a)->top->next;
-	if ((*b)->size > 1)
-		(*b)->top = (*b)->top->next;
-	write(1, "rr\n", 3);
+		(*a)->top = (*a)->top->prev;
+	write(1, "rra\n", 4);
 }

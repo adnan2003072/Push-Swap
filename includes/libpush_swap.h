@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 08:11:30 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/29 09:17:46 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/29 17:06:56 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	push_b(t_stack **a, t_stack **b);
 void	rotate_a(t_stack **a);
 void	rotate_b(t_stack **b);
 void	rotate_r(t_stack **a, t_stack **b);
-void	reverse_rotate_a(t_node *a);
-void	reverse_rotate_b(t_node *b);
-void	reverse_rotate_r(t_node *a, t_node *b);
+void	rev_rotate_a(t_stack **a);
+void	rev_rotate_b(t_stack **b);
+void	rev_rotate_r(t_stack **a, t_stack **b);
 
 #endif
