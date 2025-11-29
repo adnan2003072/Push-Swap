@@ -1,11 +1,12 @@
 /* ************************************************************************** */
-/*                                                                            */ /*                                                        :::      ::::::::   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/21 08:44:17 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/24 09:56:26 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/11/27 08:35:56 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/11/29 09:07:31 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +97,26 @@ int main(int ac, char *av[])
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	t_stack	*a;
-	a = init_stack(ac, av);
+
+	t_stack	*a = init_stack(ac, av);
+	t_stack	*b = init_stack(1, NULL);
+
+	printf("Stack A:\n");
 	print_cdll(&(a->top));
-	pop(&a);
+	push_b(&a, &b);
+	printf("Stack A:\n");
 	print_cdll(&(a->top));
-	if (check_circularity(&(a->top), a->size))
-		printf("YOUR CDLL(%d) IS PERFECTLY CIRCULAR !\n", a->size);
-	else
-		printf("OOPS !\n");
+	printf("Stack B:\n");
+	print_cdll(&(b->top));
+
 	ft_clearlst(a->top);
+	ft_clearlst(b->top);
 	free(a);
+	free(b);
 	return (0);
 }
+
+// if (check_circularity(&(a->top), a->size))
+// 	printf("YOUR CDLL(%d) IS PERFECTLY CIRCULAR !\n", a->size);
+// else
+// 	printf("OOPS !\n");

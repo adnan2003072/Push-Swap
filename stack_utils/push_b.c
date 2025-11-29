@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 14:27:20 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/25 12:50:11 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/29 09:04:58 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	push_b(t_stack **a, t_stack **b)
 {
-	t_node	*top_b;
 	t_node	*new_node;
 
-	if (!a || !b || !*a || !*b)
+	if (!a || !b || !*a || (*a)->size == 0)
 		return ;
-	top_b = (*b)->top;
 	new_node = ft_newnode((*a)->top->data);
 	pop(a);
-	if (!top_b)
+	if ((*b)->size == 0)
 	{
-		top_b = new_node;
-		top_b->next = top_b;
-		top_b->prev = top_b;
-		return ;
+		new_node->next = new_node;
+		new_node->prev = new_node;
 	}
-	new_node->next = top_b->next;
-	new_node->prev = top_b->prev;
-	top_b->prev = new_node;
-	top_b = new_node;
+	else
+	{
+		new_node->next = (*b)->top;
+		new_node->prev = (*b)->top->prev;
+		new_node->next->prev = new_node;
+		new_node->prev->next = new_node;
+	}
+	(*b)->top = new_node;
 	(*b)->size++;
 	write(1, "pb\n", 3);
 }

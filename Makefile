@@ -6,7 +6,7 @@
 #    By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/20 12:07:52 by abouzkra          #+#    #+#              #
-#    Updated: 2025/11/25 12:50:40 by abouzkra         ###   ########.fr        #
+#    Updated: 2025/11/27 09:11:55 by abouzkra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iincludes
 MSRCS = srcs/ft_atoi.c srcs/ft_isdigit.c srcs/ft_newnode.c srcs/ft_addnode_front.c \
 		srcs/ft_clearlst.c \
-		stack_utils/init_stack.c stack_utils/swap_a.c stack_utils/swap_b.c stack_utils/swap_s.c stack_utils/push_a.c \
-		stack_utils/pop.c \
+		stack_utils/init_stack.c stack_utils/swap_a.c stack_utils/swap_b.c stack_utils/swap_s.c stack_utils/pop.c \
+		stack_utils/push_a.c stack_utils/push_b.c \
 		srcs/main.c
 MOBJS = $(MSRCS:.c=.o)
 RM = rm -f
