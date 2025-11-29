@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 08:35:56 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/29 09:07:31 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/29 09:29:43 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,24 +99,26 @@ int main(int ac, char *av[])
 	}
 
 	t_stack	*a = init_stack(ac, av);
-	t_stack	*b = init_stack(1, NULL);
+	t_stack	*b = init_stack(ac, av);
 
-	printf("Stack A:\n");
-	print_cdll(&(a->top));
-	push_b(&a, &b);
 	printf("Stack A:\n");
 	print_cdll(&(a->top));
 	printf("Stack B:\n");
 	print_cdll(&(b->top));
+	rotate_r(&a, &b);
+	printf("Stack A:\n");
+	print_cdll(&(a->top));
+	printf("Stack B:\n");
+	print_cdll(&(b->top));
+	if (check_circularity(&(a->top), a->size))
+		printf("YOUR CDLL(%d) IS PERFECTLY CIRCULAR !\n", a->size);
+	else
+		printf("OOPS !\n");
 
 	ft_clearlst(a->top);
-	ft_clearlst(b->top);
 	free(a);
+	ft_clearlst(b->top);
 	free(b);
 	return (0);
 }
 
-// if (check_circularity(&(a->top), a->size))
-// 	printf("YOUR CDLL(%d) IS PERFECTLY CIRCULAR !\n", a->size);
-// else
-// 	printf("OOPS !\n");

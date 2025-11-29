@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 08:11:30 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/25 12:50:58 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/29 09:17:46 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_node	*ft_newnode(int data);
 void	ft_clearlst(t_node *head);
 t_node	*ft_addnode_front(t_node **head, int data);
 
-// stack operations
 t_stack	*init_stack(int ac, char *av[]);
 void	pop(t_stack **s);
 void	swap_a(t_stack **a);
@@ -44,9 +43,9 @@ void	swap_b(t_stack **b);
 void	swap_s(t_stack **a, t_stack **b);
 void	push_a(t_stack **a, t_stack **b);
 void	push_b(t_stack **a, t_stack **b);
-void	rotate_a(t_node *a);
-void	rotate_b(t_node *b);
-void	rotate_r(t_node *a, t_node *b);
+void	rotate_a(t_stack **a);
+void	rotate_b(t_stack **b);
+void	rotate_r(t_stack **a, t_stack **b);
 void	reverse_rotate_a(t_node *a);
 void	reverse_rotate_b(t_node *b);
 void	reverse_rotate_r(t_node *a, t_node *b);
