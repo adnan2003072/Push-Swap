@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_stack.c                                       :+:      :+:    :+:   */
+/*   free_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouzkra <adnanbouzkraouoi037@gmail.com>   +#+  +:+       +#+        */
+/*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/21 22:33:51 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/30 10:05:28 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/11/30 11:32:16 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/11/30 11:32:27 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-t_stack	*init_stack(void)
+void	free_split(char **res)
 {
-	t_stack	*new_stack;
+	char	**tmp;
 
-	new_stack = (t_stack *)malloc(sizeof(t_stack));
-	if (!new_stack)
-		return (NULL);
-	new_stack->top = NULL;
-	new_stack->size = 0;
-	return (new_stack);
+	tmp = res;
+	while (*tmp)
+	{
+		free(*tmp);
+		tmp++;
+	}
+	free(res);
 }

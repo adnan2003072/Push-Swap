@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_stack.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouzkra <adnanbouzkraouoi037@gmail.com>   +#+  +:+       +#+        */
+/*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/21 22:33:51 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/30 10:05:28 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/10/14 09:20:13 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/11/30 10:12:08 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-t_stack	*init_stack(void)
+size_t	ft_strlen(const char *str)
 {
-	t_stack	*new_stack;
+	size_t	i;
 
-	new_stack = (t_stack *)malloc(sizeof(t_stack));
-	if (!new_stack)
-		return (NULL);
-	new_stack->top = NULL;
-	new_stack->size = 0;
-	return (new_stack);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

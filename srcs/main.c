@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 08:35:56 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/29 18:11:09 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/30 10:21:15 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_numbers(int ac, char *av[])
 		i++;
 	}
 	return (1);
-}	
+}
 
 void	print_node(t_node *node)
 {
@@ -92,14 +92,12 @@ int main(int ac, char *av[])
 {
 	if (ac == 1)
 		return (0);
-	if (check_numbers(ac, av) == 0)
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
 
-	t_stack	*a = init_stack(ac, av);
-	t_stack	*b = init_stack(ac, av);
+	t_stack	*a = parse_arguments(ac, av);
+	t_stack	*b = parse_arguments(ac, av);
+
+	print_cdll(&(a->top));
+	print_cdll(&(b->top));
 	ft_clearlst(a->top);
 	free(a);
 	ft_clearlst(b->top);
