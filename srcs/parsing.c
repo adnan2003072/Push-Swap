@@ -6,16 +6,11 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 08:58:48 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/30 11:37:45 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:10:48 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
-
-void	ft_perror(void)
-{
-	write(1, "Error\n", 6);
-}
 
 static int	is_valid_number(char *str)
 {
@@ -33,6 +28,27 @@ static int	is_valid_number(char *str)
 	return (1);
 }
 
+static int	is_duplicated(t_stack **s, char *str)
+{
+	t_node	*tmp;
+	int		n;
+
+	tmp = (*s)->top;
+	n = ft_atol(str);
+	if (tmp)
+	{
+		while (1)
+		{
+			if (tmp->data == n)
+				return (1);
+			tmp = tmp->next;
+			if (tmp == (*s)->top)
+				break;
+		}
+	}
+	return (0);
+}
+
 static int	parse_split(t_stack **new_stack, char **split)
 {
 	int	i;
@@ -43,8 +59,8 @@ static int	parse_split(t_stack **new_stack, char **split)
 	i--;
 	while (i >= 0)
 	{
-		if (is_valid_number(split[i]))
-			ft_addnode_front(&((*new_stack)->top), ft_atoi(split[i]));
+		if (is_valid_number(split[i]) && !is_duplicated(new_stack, split[i]))
+			ft_addnode_front(&((*new_stack)->top), ft_atol(split[i]), 0);
 		else
 		{
 			free_split(split);
@@ -72,8 +88,10 @@ t_stack	*parse_arguments(int ac, char **av)
 			ft_perror();
 			ft_clearlst(new_stack->top);
 			free(new_stack);
+			return (NULL);
 		}
 		i--;
 	}
+	new_stack->size = ac - 1;
 	return (new_stack);
 }

@@ -6,30 +6,15 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 08:35:56 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/30 10:21:15 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/02 18:05:57 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-int	check_numbers(int ac, char *av[])
+void	ft_perror(void)
 {
-	int	i;
-	int	j;
-
-	i = 1;
-	while (i < ac)
-	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (!ft_isdigit(av[i][j]))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
+	write(2, "Error\n", 6);
 }
 
 void	print_node(t_node *node)
@@ -88,23 +73,54 @@ int	check_circularity(t_node **head, int size)
 	return (0);
 }
 
+void	assign_indexes(t_stack **s)
+{
+	t_node	*curr;
+	t_node	*other;
+	int		index;
+
+	if ((*s)->size < 2)
+		return ;
+	curr = (*s)->top;
+	while (1)
+	{
+		index= 0;
+		other = (*s)->top;
+		while (1)
+		{
+			if (other->data < curr->data)
+				index += 1;
+			other = other->next;
+			if (other == (*s)->top)
+				break ;
+		}
+		curr->index = index;
+		curr = curr->next;
+		if (curr == (*s)->top)
+			break ;
+	}
+}
+
 int main(int ac, char *av[])
 {
+	t_stack	*a;
+	t_stack	*b;
+
 	if (ac == 1)
-		return (0);
-
-	t_stack	*a = parse_arguments(ac, av);
-	t_stack	*b = parse_arguments(ac, av);
-
-	print_cdll(&(a->top));
-	print_cdll(&(b->top));
-	ft_clearlst(a->top);
-	free(a);
-	ft_clearlst(b->top);
-	free(b);
+		return (1);
+	a = parse_arguments(ac, av);
+	b = init_stack();
+	assign_indexes(&a);
+	radix_sort(&a, &b);
+	if (a)
+	{
+		ft_clearlst(a->top);
+		free(a);
+	}
+	if (b)
+	{
+		ft_clearlst(b->top);
+		free(b);
+	}
 	return (0);
 }
-	// if (check_circularity(&(a->top), a->size))
-	// 	printf("YOUR CDLL(%d) IS PERFECTLY CIRCULAR !\n", a->size);
-	// else
-	// 	printf("OOPS !\n");

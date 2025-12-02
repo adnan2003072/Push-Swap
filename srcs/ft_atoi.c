@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 12:51:09 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/21 08:47:15 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/01 12:58:58 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	get_sign(char c, size_t *i)
 	return (1);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	long	res;
 	int		sign;
@@ -41,5 +41,5 @@ int	ft_atoi(const char *nptr)
 		res = res * 10 + digit;
 		i++;
 	}
-	return ((int)(sign * res));
+	return (sign * res);
 }

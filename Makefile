@@ -6,20 +6,20 @@
 #    By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/20 12:07:52 by abouzkra          #+#    #+#              #
-#    Updated: 2025/11/30 11:33:33 by abouzkra         ###   ########.fr        #
+#    Updated: 2025/12/02 13:10:36 by abouzkra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CFLAGS = -g -Wall -Wextra -Werror -Iincludes
 MSRCS = srcs/ft_atoi.c srcs/ft_strlen.c srcs/ft_strdup.c srcs/ft_substr.c srcs/ft_split.c srcs/free_split.c srcs/ft_isdigit.c \
 		srcs/ft_newnode.c srcs/ft_addnode_front.c srcs/ft_clearlst.c \
 		srcs/parsing.c \
 		stack_utils/init_stack.c stack_utils/swap_a.c stack_utils/swap_b.c stack_utils/swap_s.c stack_utils/pop.c \
 		stack_utils/push_a.c stack_utils/push_b.c stack_utils/rotate_a.c stack_utils/rotate_b.c stack_utils/rotate_r.c \
 		stack_utils/rev_rotate_a.c stack_utils/rev_rotate_b.c stack_utils/rev_rotate_r.c \
-		srcs/main.c
+		srcs/sort.c srcs/main.c
 MOBJS = $(MSRCS:.c=.o)
 RM = rm -f
 

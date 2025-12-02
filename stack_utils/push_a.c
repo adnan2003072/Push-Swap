@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 14:27:20 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/29 09:06:02 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:07:52 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	push_a(t_stack **a, t_stack **b)
 
 	if (!a || !b || !*a || (*b)->size == 0)
 		return ;
-	new_node = ft_newnode((*b)->top->data);
+	new_node = ft_newnode((*b)->top->data, (*b)->top->index);
 	pop(b);
 	if ((*a)->size == 0)
 	{
