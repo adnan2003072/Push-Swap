@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 08:11:30 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/02 17:10:11 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/03 12:26:56 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
+# include <fcntl.h>
 
 typedef struct s_node
 {
@@ -43,20 +43,26 @@ t_node	*ft_newnode(int data, int index);
 void	ft_clearlst(t_node *head);
 t_node	*ft_addnode_front(t_node **head, int data, int index);
 t_stack	*parse_arguments(int ac, char **av);
-void	radix_sort(t_stack **a, t_stack **b);
+
+int		find_max(t_node *head);
+int		find_min(t_node *head);
+void 	print_cdll(t_node **head);
+void	cheap_pb(t_stack **a, t_stack **b)
+void	sort3(t_stack **a);
+void	sort5(t_stack **a, t_stack **b);
 
 t_stack	*init_stack(void);
 void	pop(t_stack **s);
-void	swap_a(t_stack **a);
-void	swap_b(t_stack **b);
-void	swap_s(t_stack **a, t_stack **b);
-void	push_a(t_stack **a, t_stack **b);
-void	push_b(t_stack **a, t_stack **b);
-void	rotate_a(t_stack **a);
-void	rotate_b(t_stack **b);
-void	rotate_r(t_stack **a, t_stack **b);
-void	rev_rotate_a(t_stack **a);
-void	rev_rotate_b(t_stack **b);
-void	rev_rotate_r(t_stack **a, t_stack **b);
+void	sa(t_stack **a);
+void	sb(t_stack **b);
+void	ss(t_stack **a, t_stack **b);
+void	pa(t_stack **a, t_stack **b);
+void	pb(t_stack **a, t_stack **b);
+void	ra(t_stack **a);
+void	rb(t_stack **b);
+void	rr(t_stack **a, t_stack **b);
+void	rra(t_stack **a);
+void	rrb(t_stack **b);
+void	rrr(t_stack **a, t_stack **b);
 
 #endif

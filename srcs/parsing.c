@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 08:58:48 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/02 17:10:48 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/03 09:55:42 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	is_duplicated(t_stack **s, char *str)
 				return (1);
 			tmp = tmp->next;
 			if (tmp == (*s)->top)
-				break;
+				break ;
 		}
 	}
 	return (0);

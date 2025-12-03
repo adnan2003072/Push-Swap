@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_s.c                                           :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:46:34 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/25 12:00:53 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/03 09:55:10 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,19 @@ static void	swap(t_stack **s)
 	(*s)->top = second;
 }
 
-void	swap_s(t_stack **a, t_stack **b)
+void	sa(t_stack **a)
+{
+	swap(a);
+	write(1, "sa\n", 3);
+}
+
+void	sb(t_stack **b)
+{
+	swap(b);
+	write(1, "sb\n", 3);
+}
+
+void	ss(t_stack **a, t_stack **b)
 {
 	if (!a || !b || !*a || !*b)
 		return ;

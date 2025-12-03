@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_a.c                                           :+:      :+:    :+:   */
+/*   rev_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/22 14:42:30 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/11/25 11:56:26 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/11/29 17:27:33 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/12/03 09:35:08 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-void	swap_a(t_stack **a)
+void	rev_rotate(t_stack **s)
 {
-	t_node	*top;
-	t_node	*second;
-	t_node	*tail;
+	if ((*s)->size > 1)
+		(*s)->top = (*s)->top->prev;
+}
 
-	if (!*a || (*a)->size < 2)
-		return ;
-	top = (*a)->top;
-	second = top->next;
-	tail = top->prev;
-	if ((*a)->size == 2)
-	{
-		top->next = second;
-		second->prev = top;
-	}
-	else
-	{
-		second->next->prev = top;
-		second->prev = top->prev;
-		top->next = second->next;
-		tail->next = second;
-	}
-	top->prev = second;
-	second->next = top;
-	(*a)->top = second;
-    write(1, "sa\n", 3);
+void	rra(t_stack **a)
+{
+	rev_rotate(a);
+	write(1, "rra\n", 4);
+}
+
+void	rrb(t_stack **b)
+{
+	rev_rotate(b);
+	write(1, "rrb\n", 4);
+}
+
+void	rrr(t_stack **a, t_stack **b)
+{
+	rev_rotate(a);
+	rev_rotate(b);
+	write(1, "rrr\n", 4);
 }

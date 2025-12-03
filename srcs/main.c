@@ -6,22 +6,16 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 08:35:56 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/02 18:05:57 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/03 12:19:32 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
+#include <stdio.h>
 
 void	ft_perror(void)
 {
 	write(2, "Error\n", 6);
-}
-
-void	print_node(t_node *node)
-{
-	printf("node: %d\n", node->data);
-	printf("\tprev: %d\n", node->prev->data);
-	printf("\tnext: %d\n", node->next->data);
 }
 
 void print_cdll(t_node **head)
@@ -45,32 +39,25 @@ void print_cdll(t_node **head)
     printf("\n");
 }
 
-int	check_circularity(t_node **head, int size)
+int check_circularity(t_node **head)
 {
-	t_node	*fast_next;
-	t_node	*slow_next;
-	t_node	*fast_prev;
-	t_node	*slow_prev;
-	int		i;
+    t_node *tmp;
 
-	if (!head || !*head)
-		return (0);
-	fast_next = *head;
-	slow_next  = *head;
-	fast_prev = (*head)->prev;
-	slow_prev = (*head)->prev;
-	i = 0;
-	while (i < size + 1 && slow_next ->next)
-	{
-		fast_next = fast_next->next->next;
-		slow_next  = slow_next ->next;
-		fast_prev = fast_prev->prev->prev;
-		slow_prev = slow_prev->prev;
-		if (slow_next  == fast_next && fast_prev == slow_prev)
-			return (1);
-		i++;
-	}
-	return (0);
+    if (!head || !*head)
+        return 0;
+    tmp = (*head)->next;
+    while (tmp && tmp != *head)
+        tmp = tmp->next;
+
+    if (tmp != *head)
+        return 0;
+    tmp = (*head)->prev;
+    while (tmp && tmp != *head)
+        tmp = tmp->prev;
+
+    if (tmp != *head)
+        return 0;
+    return 1;
 }
 
 void	assign_indexes(t_stack **s)
@@ -109,9 +96,15 @@ int main(int ac, char *av[])
 	if (ac == 1)
 		return (1);
 	a = parse_arguments(ac, av);
+	if (!a)
+	{
+		ft_perror();
+		return (1);
+	}
 	b = init_stack();
 	assign_indexes(&a);
-	radix_sort(&a, &b);
+	sort5(&a, &b);
+	print_cdll(&(a->top));
 	if (a)
 	{
 		ft_clearlst(a->top);
