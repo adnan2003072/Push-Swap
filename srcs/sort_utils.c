@@ -6,49 +6,51 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:32:03 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/03 13:12:36 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:18:33 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-int	find_max(t_node *head)
+t_node	*find_max_node(t_node *head)
 {
-	t_node	*next;
-	int		max;
+    t_node *curr = head;
+    t_node *max_node = head;
+    int max = head->data;
 
-	max = head->index;
-	next = head->next;
-	while (1)
-	{
-		if (next->index > max)
-			max = next->index;
-		next = next->next;
-		if (next == head)
-			break ;
-	}
-	return (max);
+    curr = curr->next;
+    while (curr != head)
+    {
+        if (curr->data > max)
+        {
+            max = curr->data;
+            max_node = curr;
+        }
+        curr = curr->next;
+    }
+    return max_node;
 }
 
-int	find_min(t_node *head)
+t_node	*find_min_node(t_node *head)
 {
-	t_node	*next;
-	int		min;
+    t_node *curr = head;
+    t_node *min_node = head;
+    int min = head->data;
 
-	min = head->index;
-	next = head->next;
-	while (1)
-	{
-		if (next->index < min)
-			min = next->index;
-		next = next->next;
-		if (next == head)
-			break ;
-	}
-	return (min);
+    curr = curr->next;
+    while (curr != head)
+    {
+        if (curr->data < min)
+        {
+            min = curr->data;
+            min_node = curr;
+        }
+        curr = curr->next;
+    }
+    return min_node;
 }
 
-int	get_pos(t_node *head, int index)
+int	get_pos(t_node *head, int data)
 {
 	t_node	*next;
 	int		i;
@@ -57,7 +59,7 @@ int	get_pos(t_node *head, int index)
 	i = 0;
 	while (1)
 	{
-		if (next->index == index)
+		if (next->data == data)
 			return (i);
 		i++;
 		next = next->next;
@@ -67,33 +69,19 @@ int	get_pos(t_node *head, int index)
 	return (-1);
 }
 
-void	cheap_rotation(t_stack **a, t_stack **b)
+int is_sorted(t_stack *a)
 {
-	int	min;
-	int pos;
+    t_node *cur;
 
-	min = find_min((*a)->top);
-	pos = get_pos((*a)->top, min);
-	if (pos > (*a)->size / 2)
-		while ((*a)->top->index != min)
-			rra(a);
-	else
-		while ((*a)->top->index != min)
-			ra(a);
+    if (!a || a->size <= 1)
+        return (1);
+    cur = a->top;
+    while (cur->next != a->top)
+    {
+        if (cur->data > cur->next->data)
+            return (0);
+        cur = cur->next;
+    }
+    return (1);
 }
 
-int	is_sorted(t_stack **a)
-{
-	t_node	*top;
-
-	top = (*a)->top;
-	while (1)
-	{
-		if (top->data > top->next->data)
-			return (0);
-		top = top->next;
-		if (top == (*a)->top)
-			break ;
-	}
-	return (1);
-}

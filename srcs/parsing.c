@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 08:58:48 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/03 09:55:42 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/04 17:27:56 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ static int	parse_split(t_stack **new_stack, char **split)
 	while (i >= 0)
 	{
 		if (is_valid_number(split[i]) && !is_duplicated(new_stack, split[i]))
-			ft_addnode_front(&((*new_stack)->top), ft_atol(split[i]), 0);
+		{
+			ft_addnode_front(&((*new_stack)->top), ft_atol(split[i]));
+			(*new_stack)->size++;
+		}
 		else
 		{
 			free_split(split);
@@ -92,6 +95,5 @@ t_stack	*parse_arguments(int ac, char **av)
 		}
 		i--;
 	}
-	new_stack->size = ac - 1;
 	return (new_stack);
 }

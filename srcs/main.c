@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 08:35:56 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/03 12:19:32 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/04 22:23:18 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_perror(void)
 	write(2, "Error\n", 6);
 }
 
-void print_cdll(t_node **head)
+void print_cdll(t_node **head, int size)
 {
     t_node  *tmp;
 
@@ -27,6 +27,7 @@ void print_cdll(t_node **head)
         printf("Empty CDLL !\n");
         return ;
     }
+	printf("Stack of size : %d\n", size);
     tmp = *head;
     while (1)
     {
@@ -60,33 +61,33 @@ int check_circularity(t_node **head)
     return 1;
 }
 
-void	assign_indexes(t_stack **s)
-{
-	t_node	*curr;
-	t_node	*other;
-	int		index;
-
-	if ((*s)->size < 2)
-		return ;
-	curr = (*s)->top;
-	while (1)
-	{
-		index= 0;
-		other = (*s)->top;
-		while (1)
-		{
-			if (other->data < curr->data)
-				index += 1;
-			other = other->next;
-			if (other == (*s)->top)
-				break ;
-		}
-		curr->index = index;
-		curr = curr->next;
-		if (curr == (*s)->top)
-			break ;
-	}
-}
+// void	assign_indexes(t_stack **s)
+// {
+// 	t_node	*curr;
+// 	t_node	*other;
+// 	int		index;
+//
+// 	if ((*s)->size < 2)
+// 		return ;
+// 	curr = (*s)->top;
+// 	while (1)
+// 	{
+// 		index= 0;
+// 		other = (*s)->top;
+// 		while (1)
+// 		{
+// 			if (other->data < curr->data)
+// 				index += 1;
+// 			other = other->next;
+// 			if (other == (*s)->top)
+// 				break ;
+// 		}
+// 		curr->index = index;
+// 		curr = curr->next;
+// 		if (curr == (*s)->top)
+// 			break ;
+// 	}
+// }
 
 int main(int ac, char *av[])
 {
@@ -102,9 +103,8 @@ int main(int ac, char *av[])
 		return (1);
 	}
 	b = init_stack();
-	assign_indexes(&a);
-	sort5(&a, &b);
-	print_cdll(&(a->top));
+	if (!is_sorted(a))
+		sort(&a, &b);
 	if (a)
 	{
 		ft_clearlst(a->top);

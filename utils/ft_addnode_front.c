@@ -6,18 +6,18 @@
 /*   By: abouzkra <adnanbouzkraouoi037@gmail.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 23:36:08 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/02 17:09:40 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/04 17:27:03 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-t_node	*ft_addnode_front(t_node **head, int data, int index)
+t_node	*ft_addnode_front(t_node **head, int data)
 {
 	t_node	*new_node;
 	t_node	*last_node;
 
-	new_node = ft_newnode(data, index);
+	new_node = ft_newnode(data);
 	if (!(*head))
 	{
 		*head = new_node;

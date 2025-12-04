@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_newnode.c                                       :+:      :+:    :+:   */
+/*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <adnanbouzkraouoi037@gmail.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/21 23:26:57 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/04 17:26:36 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/12/04 19:36:45 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/12/04 21:54:09 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-t_node	*ft_newnode(int data)
+void	sort3(t_stack **a)
 {
-	t_node	*new_node;
+	int	max;
 
-	new_node = (t_node *)malloc(sizeof(t_node));
-	if (!new_node)
-		return (NULL);
-	new_node->data = data;
-	new_node->next = new_node;
-	new_node->prev = new_node;
-	return (new_node);
+	if ((*a)->size > 3)
+		return ;
+	max = find_max_node((*a)->top)->data;
+	if ((*a)->top->data == max)
+		ra(a);
+	else if ((*a)->top->next->data == max)
+		rra(a);
+	if ((*a)->top->data > (*a)->top->next->data)
+		sa(a);
 }
