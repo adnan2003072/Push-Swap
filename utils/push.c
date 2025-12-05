@@ -6,130 +6,90 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 14:27:20 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/03 11:10:42 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/05 12:54:54 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libpush_swap.h"
 
-void    pa(t_stack **a, t_stack **b)
+static t_node	*detach_a_top(t_stack **a)
 {
-    t_node *n;
+	t_node	*a_top;
 
-    if (!b || !*b || (*b)->size == 0)
-        return;
-    n = (*b)->top;
-    if ((*b)->size == 1)
-        (*b)->top = NULL;
-    else
-    {
-        n->prev->next = n->next;
-        n->next->prev = n->prev;
-        (*b)->top = n->next;
-    }
-    (*b)->size--;
-    if ((*a)->size == 0)
-    {
-        n->next = n;
-        n->prev = n;
-    }
-    else
-    {
-        n->next = (*a)->top;
-        n->prev = (*a)->top->prev;
-        n->prev->next = n;
-        n->next->prev = n;
-    }
-    (*a)->top = n;
-    (*a)->size++;
-    write(1, "pa\n", 3);
+	a_top = (*a)->top;
+	if ((*a)->size == 1)
+		(*a)->top = NULL;
+	else
+	{
+		a_top->prev->next = a_top->next;
+		a_top->next->prev = a_top->prev;
+		(*a)->top = a_top->next;
+	}
+	(*a)->size--;
+	return (a_top);
 }
 
-void    pb(t_stack **a, t_stack **b)
+static t_node	*detach_b_top(t_stack **b)
 {
-    t_node *n;
+	t_node	*b_top;
 
-    if (!a || !*a || (*a)->size == 0)
-        return;
-
-    // take the top node of A
-    n = (*a)->top;
-
-    if ((*a)->size == 1)
-        (*a)->top = NULL;
-    else
-    {
-        n->prev->next = n->next;
-        n->next->prev = n->prev;
-        (*a)->top = n->next;
-    }
-    (*a)->size--;
-
-    // insert it into B
-    if ((*b)->size == 0)
-    {
-        n->next = n;
-        n->prev = n;
-    }
-    else
-    {
-        n->next = (*b)->top;
-        n->prev = (*b)->top->prev;
-        n->prev->next = n;
-        n->next->prev = n;
-    }
-    (*b)->top = n;
-    (*b)->size++;
-
-    write(1, "pb\n", 3);
+	b_top = (*b)->top;
+	if ((*b)->size == 1)
+		(*b)->top = NULL;
+	else
+	{
+		b_top->prev->next = b_top->next;
+		b_top->next->prev = b_top->prev;
+		(*b)->top = b_top->next;
+	}
+	(*b)->size--;
+	return (b_top);
 }
 
-// void	pa(t_stack **a, t_stack **b)
-// {
-// 	t_node	*new_node;
-//
-// 	if (!a || !b || !*a || (*b)->size == 0)
-// 		return ;
-// 	new_node = ft_newnode((*b)->top->data, (*b)->top->index);
-// 	pop(b);
-// 	if ((*a)->size == 0)
-// 	{
-// 		new_node->next = new_node;
-// 		new_node->prev = new_node;
-// 	}
-// 	else
-// 	{
-// 		new_node->next = (*a)->top;
-// 		new_node->prev = (*a)->top->prev;
-// 		new_node->next->prev = new_node;
-// 		new_node->prev->next = new_node;
-// 	}
-// 	(*a)->top = new_node;
-// 	(*a)->size++;
-// 	write(1, "pa\n", 3);
-// }
-//
-// void	pb(t_stack **a, t_stack **b)
-// {
-// 	t_node	*new_node;
-//
-// 	if (!a || !b || !*a || (*a)->size == 0)
-// 		return ;
-// 	new_node = ft_newnode((*a)->top->data, (*a)->top->index);
-// 	pop(a);
-// 	if ((*b)->size == 0)
-// 	{
-// 		new_node->next = new_node;
-// 		new_node->prev = new_node;
-// 	}
-// 	else
-// 	{
-// 		new_node->next = (*b)->top;
-// 		new_node->prev = (*b)->top->prev;
-// 		new_node->next->prev = new_node;
-// 		new_node->prev->next = new_node;
-// 	}
-// 	(*b)->top = new_node;
-// 	(*b)->size++;
-// 	write(1, "pb\n", 3);
-// }
+void	pa(t_stack **a, t_stack **b)
+{
+	t_node	*b_top;
+
+	if (!b || !*b || (*b)->size == 0)
+		return ;
+	b_top = detach_b_top(b);
+	if ((*a)->size == 0)
+	{
+		b_top->next = b_top;
+		b_top->prev = b_top;
+	}
+	else
+	{
+		b_top->next = (*a)->top;
+		b_top->prev = (*a)->top->prev;
+		b_top->prev->next = b_top;
+		b_top->next->prev = b_top;
+	}
+	(*a)->top = b_top;
+	(*a)->size++;
+	write(1, "pa\n", 3);
+}
+
+void	pb(t_stack **a, t_stack **b)
+{
+	t_node	*a_top;
+
+	if (!a || !*a || (*a)->size == 0)
+		return ;
+	a_top = detach_a_top(a);
+	if ((*b)->size == 0)
+	{
+		a_top->next = a_top;
+		a_top->prev = a_top;
+	}
+	else
+	{
+		a_top->next = (*b)->top;
+		a_top->prev = (*b)->top->prev;
+		a_top->prev->next = a_top;
+		a_top->next->prev = a_top;
+	}
+	(*b)->top = a_top;
+	(*b)->size++;
+	write(1, "pb\n", 3);
+}

@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 08:11:30 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/04 22:07:54 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:12:36 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <fcntl.h>
 
 typedef struct s_node
@@ -38,11 +39,12 @@ typedef struct s_cost
 	int		a_dir;
 	int		b_dir;
 	t_node	*target;
-} t_cost;
+}	t_cost;
 
 size_t	ft_strlen(const char *str);
 int		ft_isdigit(int c);
-long	ft_atol(const char *nptr);
+// int		ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 char	*ft_strdup(const char *s);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
@@ -53,8 +55,7 @@ void	ft_clearlst(t_node *head);
 t_node	*ft_addnode_front(t_node **head, int data);
 t_stack	*parse_arguments(int ac, char **av);
 
-void print_cdll(t_node **head, int size);
-int is_sorted(t_stack *a);
+int		is_sorted(t_stack *a);
 t_node	*find_max_node(t_node *head);
 t_node	*find_min_node(t_node *head);
 t_cost	cost_to_insert(t_stack **a, t_stack **b, t_node *b_node);

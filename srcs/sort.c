@@ -6,14 +6,13 @@
 /*   By: abouzkra <adnanbouzkraouoi037@gmail.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 19:36:24 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/04 22:19:01 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/05 12:19:10 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "../includes/libpush_swap.h"
 
-static t_cost find_best_to_insert(t_stack **a, t_stack **b)
+static t_cost	find_best_to_insert(t_stack **a, t_stack **b)
 {
 	t_node	*b_node;
 	t_cost	cost;
@@ -36,26 +35,8 @@ static t_cost find_best_to_insert(t_stack **a, t_stack **b)
 	return (best_cost);
 }
 
-static void	optimal_moves(t_stack **a, t_stack **b, t_cost cost)
+static void	perform_remaining_moves(t_stack **a, t_stack **b, t_cost cost)
 {
-	if (cost.a_dir == 1 &&  cost.b_dir == 1)
-	{
-		while (cost.a_moves > 0 && cost.b_moves > 0)
-		{
-			rr(a, b);
-			cost.a_moves--;
-			cost.b_moves--;
-		}
-	}
-	else if (cost.a_dir == 1 &&  cost.b_dir == 1)
-	{
-		while (cost.a_moves > 0 && cost.b_moves > 0)
-		{
-			rrr(a, b);
-			cost.a_moves--;
-			cost.b_moves--;
-		}
-	}
 	while (cost.a_moves > 0)
 	{
 		if (cost.a_dir == 1)
@@ -74,27 +55,49 @@ static void	optimal_moves(t_stack **a, t_stack **b, t_cost cost)
 	}
 }
 
-static void    rotate_min_to_top(t_stack **a, t_node *min)
+static void	perform_optimal_moves(t_stack **a, t_stack **b, t_cost cost)
 {
-    t_node  *cur;
-    int     dist_forward = 0;
-    int     dist_backward;
+	if (cost.a_dir == 1 && cost.b_dir == 1)
+	{
+		while (cost.a_moves > 0 && cost.b_moves > 0)
+		{
+			rr(a, b);
+			cost.a_moves--;
+			cost.b_moves--;
+		}
+	}
+	else if (cost.a_dir == 1 && cost.b_dir == 1)
+	{
+		while (cost.a_moves > 0 && cost.b_moves > 0)
+		{
+			rrr(a, b);
+			cost.a_moves--;
+			cost.b_moves--;
+		}
+	}
+	perform_remaining_moves(a, b, cost);
+}
 
-    if (!a || !*a || (*a)->size <= 1)
-        return;
-    cur = (*a)->top;
-    while (cur != min)
-    {
-        cur = cur->next;
-        dist_forward++;
-    }
-    dist_backward = (*a)->size - dist_forward;
-    if (dist_forward <= dist_backward)
-        while ((*a)->top != min)
-            ra(a);
-    else
-        while ((*a)->top != min)
-            rra(a);
+static void	rotate_min_to_top(t_stack **a, t_node *min)
+{
+	t_node	*cur;
+	int		dist_forward;
+
+	if (!a || !*a || (*a)->size <= 1)
+		return ;
+	cur = (*a)->top;
+	dist_forward = 0;
+	while (cur != min)
+	{
+		cur = cur->next;
+		dist_forward++;
+	}
+	if (dist_forward <= (*a)->size - dist_forward)
+		while ((*a)->top != min)
+			ra(a);
+	else
+		while ((*a)->top != min)
+			rra(a);
 }
 
 void	sort(t_stack **a, t_stack **b)
@@ -113,7 +116,7 @@ void	sort(t_stack **a, t_stack **b)
 	while ((*b)->size)
 	{
 		best_cost = find_best_to_insert(a, b);
-		optimal_moves(a, b, best_cost);
+		perform_optimal_moves(a, b, best_cost);
 		pa(a, b);
 	}
 	rotate_min_to_top(a, find_min_node((*a)->top));

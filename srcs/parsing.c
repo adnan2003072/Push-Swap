@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 08:58:48 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/12/04 17:27:56 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/12/05 16:51:53 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ static int	is_valid_number(char *str)
 	return (1);
 }
 
-static int	is_duplicated(t_stack **s, char *str)
+static int	is_duplicated(t_stack **s, int n)
 {
 	t_node	*tmp;
-	int		n;
 
 	tmp = (*s)->top;
-	n = ft_atol(str);
 	if (tmp)
 	{
 		while (1)
@@ -51,7 +49,8 @@ static int	is_duplicated(t_stack **s, char *str)
 
 static int	parse_split(t_stack **new_stack, char **split)
 {
-	int	i;
+	int		i;
+	long	n;
 
 	i = 0;
 	while (split[i])
@@ -59,9 +58,11 @@ static int	parse_split(t_stack **new_stack, char **split)
 	i--;
 	while (i >= 0)
 	{
-		if (is_valid_number(split[i]) && !is_duplicated(new_stack, split[i]))
+		n = ft_atoi(split[i]);
+		printf("%ld\n", n);
+		if (n != 2147483648 && is_valid_number(split[i]) && !is_duplicated(new_stack, n))
 		{
-			ft_addnode_front(&((*new_stack)->top), ft_atol(split[i]));
+			ft_addnode_front(&((*new_stack)->top), (int)n);
 			(*new_stack)->size++;
 		}
 		else
@@ -88,7 +89,6 @@ t_stack	*parse_arguments(int ac, char **av)
 		split = ft_split(av[i], ' ');
 		if (!parse_split(&new_stack, split))
 		{
-			ft_perror();
 			ft_clearlst(new_stack->top);
 			free(new_stack);
 			return (NULL);

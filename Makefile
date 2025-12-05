@@ -6,7 +6,7 @@
 #    By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/20 12:07:52 by abouzkra          #+#    #+#              #
-#    Updated: 2025/12/04 22:00:52 by abouzkra         ###   ########.fr        #
+#    Updated: 2025/12/05 12:04:51 by abouzkra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,6 @@ MSRCS = utils/ft_atoi.c          \
 		utils/pop.c 		     \
 		srcs/parsing.c           \
 		srcs/sort_utils.c		 \
-		srcs/small_sort.c		 \
 		srcs/median.c			 \
 		srcs/cost.c				 \
 		srcs/sort.c				 \
